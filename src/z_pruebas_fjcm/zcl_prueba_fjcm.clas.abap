@@ -65,6 +65,16 @@ CLASS zcl_prueba_fjcm IMPLEMENTATION.
 
     out->write( |Product ID: { lv_product_id } - Name: { lv_product_name } - Price: { lv_product_price } - Description: { lv_product_description } - Category: { lv_product_category } | ).
 
+        DATA ls_elements TYPE zcl_lab_01_elements=>ty_elem_objects.
+
+    zcl_lab_01_elements=>set_objects(
+      iv_ms_object_class     = 'zcl_person'
+      iv_ms_object_instance  = 'lo_person1'
+      iv_ms_object_reference = 'zcl_person->'
+    ).
+
+    out->write( zcl_lab_01_elements=>ms_object ).
+
 
 
 
