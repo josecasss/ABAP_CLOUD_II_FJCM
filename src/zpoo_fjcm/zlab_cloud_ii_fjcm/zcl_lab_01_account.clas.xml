@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_LAB_08_WORK_RECORD</CLSNAME>
+    <CLSNAME>ZCL_LAB_01_ACCOUNT</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>LAB 01 WORK RECORD</DESCRIPT>
+    <DESCRIPT>LAB 01 ACCOUNT</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

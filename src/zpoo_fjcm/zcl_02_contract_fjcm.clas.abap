@@ -1,7 +1,8 @@
 CLASS zcl_02_contract_fjcm DEFINITION " Definition: Atributos y métodos
   PUBLIC                              " Visibilidad de la clase, todos los programas pueden acceder a ella
   FINAL                               " Clase no puede ser heredada
-  CREATE PUBLIC .                     " Clase puede ser instanciada desde fuera
+" CREATE PUBLIC .                     " Clase puede ser instanciada desde fuera
+  CREATE PRIVATE.                     " Clase no puede ser instanciada desde fuera, solo dentro de la clase o clases amigas
 
   PUBLIC SECTION.                     " Métodos y atributos(componentes) públicos accesibles en todo el sistema                         *VERDE
 
@@ -48,6 +49,8 @@ CLASS zcl_02_contract_fjcm DEFINITION " Definition: Atributos y métodos
 
     METHODS set_sales_org IMPORTING sales_org TYPE string.
     METHODS get_sales_org EXPORTING sales_org TYPE string.
+
+    CLASS-METHODS: get_instance EXPORTING er_instance TYPE ref to zcl_02_contract_fjcm.
 
 
 
@@ -112,6 +115,10 @@ CLASS zcl_02_contract_fjcm IMPLEMENTATION.
 
   METHOD get_sales_org.
     sales_org = me->sales_org.
+  ENDMETHOD.
+
+  METHOD get_instance.
+  er_instance = NEW zcl_02_contract_fjcm( ). " Crear una nueva instancia de la clase
   ENDMETHOD.
 
 ENDCLASS.

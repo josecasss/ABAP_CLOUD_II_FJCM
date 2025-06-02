@@ -60,20 +60,15 @@ CLASS zcl_lab_01_ejec_fjcm IMPLEMENTATION.
 
     DATA(lo_student) = NEW zcl_lab_01_student( ).
 
-*    lo_student->birth_date = '2000-05-13'. *********************
+    "   lo_student->birth_date = '2000-05-13'. "No es posible modificar el atributo por la referencia, por el parametro READ-ONLY
 
-    "No es posible modificar el atributo por la referencia, por el parametro READ-ONLY
-
-    lo_student->set_birth_date( '20001305' ).
+    lo_student->set_birth_date( '20001305' ). "Sí es posible modificar el atributo desde fuera de la clase a través de un método de instancia público
 
     out->write( lo_student->birth_date ).
 
-    "Sí es posible modificar el atributo desde fuera de la clase a través de un método de instancia público
-
-
 **************Ejercicio 10**************
 
-    DATA(lo_work_record) = NEW zcl_lab_08_work_record( ).
+    DATA(lo_work_record) = NEW zcl_lab_01_work_record( ).
 
     lo_work_record->open_new_record(
       iv_date       =  '20250601'
@@ -84,7 +79,7 @@ CLASS zcl_lab_01_ejec_fjcm IMPLEMENTATION.
 
 **************Ejercicio 11**************
 
-  DATA(lo_account) = NEW zcl_lab_09_account( ).
+    DATA(lo_account) = NEW zcl_lab_01_account( ).
 
     lo_account->set_iban( iban = '137164812723'  ).
     lo_account->get_iban(
@@ -92,6 +87,29 @@ CLASS zcl_lab_01_ejec_fjcm IMPLEMENTATION.
         iban = DATA(lv_iban) ).
 
     out->write( |The IBAN is { lv_iban }| ).
+
+************LAB 02***********************
+
+*****Ejercicio1**********
+
+    DATA(lo_constructor) = NEW zcl_lab_10_constructor_fjcm( ).
+
+    out->write( lo_constructor->log ).
+
+
+
+
+
+*****Ejercicio2**********
+
+
+
+
+
+
+
+
+
 
   ENDMETHOD.
 ENDCLASS.
