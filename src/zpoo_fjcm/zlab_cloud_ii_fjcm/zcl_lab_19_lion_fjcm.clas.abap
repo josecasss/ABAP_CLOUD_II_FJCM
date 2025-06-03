@@ -1,0 +1,22 @@
+CLASS zcl_lab_19_lion_fjcm DEFINITION INHERITING FROM zcl_lab_18_animal_fjcm
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+  METHODS: walk REDEFINITION.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_lab_19_lion_fjcm IMPLEMENTATION.
+
+  METHOD walk.
+  rv_walk = 'The lion walks'.
+  ENDMETHOD.
+
+ENDCLASS.
