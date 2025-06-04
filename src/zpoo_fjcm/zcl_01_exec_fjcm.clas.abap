@@ -16,42 +16,60 @@ CLASS zcl_01_exec_fjcm IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.
 
-    "      DATA(lo_citizen) = NEW zcl_09_citizen_fjcm( ).
+ DATA(lo_bussines_partner) = NEW zcl_17_bp_fjcm( ).
 
-    zcl_09_citizen_fjcm=>get_instance( IMPORTING ev_instance = DATA(lo_citizen) ).
-
-
-    DATA(lo_animal) = NEW zcl_07_animal_fjcm( ).
-    DATA(lo_lion) = NEW zcl_08_lion_fjcm( ).
-
-    out->write( |Animal: { lo_animal->walk( ) } | ).
-    out->write( |Lion: { lo_lion->walk( ) } | ).
-
-*****Narrowing (Up Cast)*****
-    lo_animal = lo_lion. " Up Cast, convertir padre en hijo
-    out->write( '*****Narrowing (Up Cast)*****' ).
-    out->write( |Animal: { lo_animal->walk( ) } | ).
-    out->write( |Lion: { lo_lion->walk( ) } | ).
-
-*****Widening(Down Cast)*****  "Se utiliza siempre despues de UP CAST    "Obligatorio el uso de TRY CATCH para evitar errores de conversión
-
-    TRY.
-        lo_lion ?= lo_animal. " Down Cast, volver a convertir hijo en padre *ERROR* *Clase hija no puede apuntar a clase padre*.
-      CATCH cx_sy_move_cast_error.
-        out->write( |Error: Cannot cast Animal to Lion| ).
-        RETURN.
-    ENDTRY.
-
-    lo_lion ?= lo_animal. " Down Cast, volver a convertir lo_lion en lo_animal *ERROR* *Clase hija no puede apuntar a clase padre*.
-    out->write( '*****Widening Casting (Down Cast)*****' ).
-    out->write( |Animal: { lo_animal->walk( ) } | ).
-    out->write( |Lion: { lo_lion->walk( ) } | ).
+ lo_bussines_partner->set_company_type( ). "Llamando con aliases
+ lo_bussines_partner->set_group( ).
 
 
+*  DATA(lo_department) = NEW zcl_lab_16_department_fjcm( ).
+*
+*  lo_department->zif_04_document_fjcm~set_sales_doc( iv_sales_doc = '123D'  ).  "Debo llamar a sus métodos de la interfaz independientemente
+*  lo_department->zif_05_sales_order_fjcm~create_order( iv_order_id = '1234'  ). "Debo llamar a sus métodos de la interfaz independientemente
+
+*     DATA(lo_screen) = NEW zcl_lab_15_screen_fjcm( 22 ).
+*     out->write( lo_screen->zif_02_eu_unit_fjcm~dimensions_centimeters( ) ).
+*     out->write( lo_screen->zif_03_en_unit_fjcm~dimension_inches( ) ).
 
 
+*    DATA(lo_travel_agency) = NEW zcl_lab_14_travel_agency_fjcm( ).
+*
+*    lo_travel_agency->zif_01_agency_fjcm~set_name( iv_name = 'Gate2fly.com' ).
+*    out->write( |Agency Name: { lo_travel_agency->zif_01_agency_fjcm~get_name( ) } | ).
+*
+*    zcl_lab_14_travel_agency_fjcm=>zif_01_agency_fjcm~set_adress( iv_address = 'Madrid-Spain' ).
+*    out->write( |Agency Address: { zcl_lab_14_travel_agency_fjcm=>zif_01_agency_fjcm~get_address( ) } | ).
 
-
+*    "      DATA(lo_citizen) = NEW zcl_09_citizen_fjcm( ).
+*
+*    zcl_09_citizen_fjcm=>get_instance( IMPORTING ev_instance = DATA(lo_citizen) ).
+*
+*
+*    DATA(lo_animal) = NEW zcl_07_animal_fjcm( ).
+*    DATA(lo_lion) = NEW zcl_08_lion_fjcm( ).
+*
+*    out->write( |Animal: { lo_animal->walk( ) } | ).
+*    out->write( |Lion: { lo_lion->walk( ) } | ).
+*
+******Narrowing (Up Cast)*****
+*    lo_animal = lo_lion. " Up Cast, convertir padre en hijo
+*    out->write( '*****Narrowing (Up Cast)*****' ).
+*    out->write( |Animal: { lo_animal->walk( ) } | ).
+*    out->write( |Lion: { lo_lion->walk( ) } | ).
+*
+******Widening(Down Cast)*****  "Se utiliza siempre despues de UP CAST    "Obligatorio el uso de TRY CATCH para evitar errores de conversión
+*
+*    TRY.
+*        lo_lion ?= lo_animal. " Down Cast, volver a convertir hijo en padre *ERROR* *Clase hija no puede apuntar a clase padre*.
+*      CATCH cx_sy_move_cast_error.
+*        out->write( |Error: Cannot cast Animal to Lion| ).
+*        RETURN.
+*    ENDTRY.
+*
+*    lo_lion ?= lo_animal. " Down Cast, volver a convertir lo_lion en lo_animal *ERROR* *Clase hija no puede apuntar a clase padre*.
+*    out->write( '*****Widening Casting (Down Cast)*****' ).
+*    out->write( |Animal: { lo_animal->walk( ) } | ).
+*    out->write( |Lion: { lo_lion->walk( ) } | ).
 
 **********************************************
 
@@ -168,5 +186,5 @@ CLASS zcl_01_exec_fjcm IMPLEMENTATION.
 *
 *    out->write( zcl_02_contract_fjcm=>company ). "Atributo estatico, afecta a todas las instancias 'TIENE READ ONLY'
 
-  ENDMETHOD.
+    endmethod.
 ENDCLASS.

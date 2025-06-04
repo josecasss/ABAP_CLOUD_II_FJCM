@@ -166,16 +166,112 @@ CLASS zcl_lab_01_ejec_fjcm IMPLEMENTATION.
 
 *************Ejerecicio 9**************
 
-    DATA(lo_capital) = NEW zcl_lab_24_partner_fjcm( ).
+*    DATA(lo_capital) = NEW zcl_lab_24_partner_fjcm( ).
+*
+*    out->write( |The company capital is { lo_capital->get_company_capital( ) }| ).
+*
+**************Ejerecicio 10**************
+*
+*    DATA(lo_capital2) = NEW zcl_lab_25_collaborator_fjcm( ).
+*
+*    out->write( |The company capital is { lo_capital2->get_capital( ) }| ).
 
-    out->write( |The company capital is { lo_capital->get_company_capital( ) }| ).
+*************LAB 02-3***************
 
-*************Ejerecicio 10**************
+*************Ejercicio 2**************
 
-    DATA(lo_capital2) = NEW zcl_lab_25_collaborator_fjcm( ).
+*    DATA(lo_flights) = NEW zcl_lab_26_flights_fjcm( ).
+*
+*    lo_flights->set_conn_id( iv_set_connid = 'MAD-BCN'  ). " Lo hice con aliases desde un principio
+*    out->write( lo_flights->get_conn_id( ) ).              " Me resulta mas eficiente
 
-    out->write( |The company capital is { lo_capital2->get_capital( ) }| ).
+*************Ejercicio 3**************
 
+*DATA(lo_customer) = NEW zcl_lab_26_flights_fjcm( ).
+*
+*DATA ls_customer_address type zcl_lab_26_flights_fjcm=>zif_lab_02_customer_fjcm~ty_cust_address.
+*
+*lo_customer->get_customer(
+*  EXPORTING
+*    iv_customer_id      = '000002'
+*  RECEIVING
+*    rt_customer_address = ls_customer_address ).
+*
+*IF ls_customer_address IS NOT INITIAL.
+*  out->write( |Customer found: { ls_customer_address-firstname } { ls_customer_address-lastname }| ).
+*ELSE.
+*  out->write( 'Customer with that ID not found' ).
+*ENDIF.
+
+*************Ejercicio 4**************
+
+*DATA(lo_flight_id) = NEW zcl_lab_26_flights_fjcm( ).
+*
+*DATA ls_flight_id type /dmo/airport.
+*
+*lo_flight_id->get_airports(
+*  EXPORTING
+*    iv_airport_id  = 'FRA'
+*  RECEIVING
+*    rt_airports_id = ls_flight_id
+*).
+*
+*IF ls_flight_id IS NOT INITIAL.
+*  out->write( name = 'Flight ID' data = ls_flight_id  ).
+*ELSE.
+*  out->write( 'Flight ID not found' ).
+*ENDIF.
+
+*************Ejercicio 5**************
+
+DATA(lo_aliases_test) = NEW zcl_lab_26_flights_fjcm( ).
+
+
+lo_aliases_test->set_conn_id( iv_set_connid = 'MAD-BCN' ).
+out->write( name = 'Connection ID' data = lo_aliases_test->get_conn_id( ) ).
+out->write( cl_abap_char_utilities=>newline ).
+
+DATA ls_customer_address2 type zcl_lab_26_flights_fjcm=>zif_lab_02_customer_fjcm~ty_cust_address.
+
+lo_aliases_test->get_customer(
+  EXPORTING
+    iv_customer_id      = '000002'
+  RECEIVING
+    rt_customer_address = ls_customer_address2 ).
+
+IF ls_customer_address2 IS NOT INITIAL.
+  out->write( Name = 'Customer found' data = ls_customer_address2 ).
+  out->write( cl_abap_char_utilities=>newline ).
+ELSE.
+  out->write( 'Customer with that ID not found' ).
+ENDIF.
+
+
+DATA ls_flight_id2 type /dmo/airport.
+
+lo_aliases_test->get_airports(
+  EXPORTING
+    iv_airport_id  = 'MAD'
+  RECEIVING
+    rt_airports_id = ls_flight_id2
+).
+
+IF ls_flight_id2 IS NOT INITIAL.
+  out->write( name = 'Flight ID' data = ls_flight_id2  ).
+  out->write( cl_abap_char_utilities=>newline ).
+ELSE.
+  out->write( 'Flight ID not found' ).
+ENDIF.
+
+*************Ejercicio 6**************
+
+DATA(lo_logistics) = NEW zcl_lab_28_logistics_fjcm( ).
+
+out->write( lo_logistics->input_products( ) ).
+out->write( cl_abap_char_utilities=>newline ).
+out->write( lo_logistics->merchandise_output( ) ).
+out->write( cl_abap_char_utilities=>newline ).
+out->write( lo_logistics->production_line( ) ).
 
 
 
