@@ -1,4 +1,4 @@
-CLASS zcl_lab_01_ejec_fjcm DEFINITION
+CLASS zcl_lab_00_ejec_fjcm DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_lab_01_ejec_fjcm IMPLEMENTATION.
+CLASS zcl_lab_00_ejec_fjcm IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
@@ -224,54 +224,91 @@ CLASS zcl_lab_01_ejec_fjcm IMPLEMENTATION.
 
 *************Ejercicio 5**************
 
-DATA(lo_aliases_test) = NEW zcl_lab_26_flights_fjcm( ).
+*DATA(lo_aliases_test) = NEW zcl_lab_26_flights_fjcm( ).
+*
+*
+*lo_aliases_test->set_conn_id( iv_set_connid = 'MAD-BCN' ).
+*out->write( name = 'Connection ID' data = lo_aliases_test->get_conn_id( ) ).
+*out->write( cl_abap_char_utilities=>newline ).
+*
+*DATA ls_customer_address2 type zcl_lab_26_flights_fjcm=>zif_lab_02_customer_fjcm~ty_cust_address.
+*
+*lo_aliases_test->get_customer(
+*  EXPORTING
+*    iv_customer_id      = '000002'
+*  RECEIVING
+*    rt_customer_address = ls_customer_address2 ).
+*
+*IF ls_customer_address2 IS NOT INITIAL.
+*  out->write( Name = 'Customer found' data = ls_customer_address2 ).
+*  out->write( cl_abap_char_utilities=>newline ).
+*ELSE.
+*  out->write( 'Customer with that ID not found' ).
+*ENDIF.
+*
+*
+*DATA ls_flight_id2 type /dmo/airport.
+*
+*lo_aliases_test->get_airports(
+*  EXPORTING
+*    iv_airport_id  = 'MAD'
+*  RECEIVING
+*    rt_airports_id = ls_flight_id2
+*).
+*
+*IF ls_flight_id2 IS NOT INITIAL.
+*  out->write( name = 'Flight ID' data = ls_flight_id2  ).
+*  out->write( cl_abap_char_utilities=>newline ).
+*ELSE.
+*  out->write( 'Flight ID not found' ).
+*ENDIF.
+*
+**************Ejercicio 6**************
+*
+*DATA(lo_logistics) = NEW zcl_lab_28_logistics_fjcm( ).
+*
+*out->write( lo_logistics->input_products( ) ).
+*out->write( cl_abap_char_utilities=>newline ).
+*out->write( lo_logistics->merchandise_output( ) ).
+*out->write( cl_abap_char_utilities=>newline ).
+*out->write( lo_logistics->production_line( ) ).
 
 
-lo_aliases_test->set_conn_id( iv_set_connid = 'MAD-BCN' ).
-out->write( name = 'Connection ID' data = lo_aliases_test->get_conn_id( ) ).
-out->write( cl_abap_char_utilities=>newline ).
+*******LAB 03*************
+**************Ejercicio 1**************
 
-DATA ls_customer_address2 type zcl_lab_26_flights_fjcm=>zif_lab_02_customer_fjcm~ty_cust_address.
+*    DATA: gt_organization TYPE STANDARD TABLE OF REF TO zcl_lab_29_organization_fjcm,
+*          go_location_org TYPE REF TO zcl_lab_29_organization_fjcm,
+*          go_org_germany  TYPE REF TO zcl_lab_30_org_germany_fjcm,
+*          go_org_france   TYPE REF TO zcl_lab_31_org_france_fjcm.
+*
+*    go_org_germany = NEW #( ).
+*    APPEND go_org_germany TO gt_organization.
+*    go_org_france = NEW #( ).
+*    APPEND go_org_france TO gt_organization.
+*    go_location_org = NEW #( ).
+*
+*    LOOP AT gt_organization INTO go_location_org.
+*      out->write( go_location_org->get_location( ) ).
+*    ENDLOOP.
 
-lo_aliases_test->get_customer(
-  EXPORTING
-    iv_customer_id      = '000002'
-  RECEIVING
-    rt_customer_address = ls_customer_address2 ).
+**************Ejercicio 2**************
 
-IF ls_customer_address2 IS NOT INITIAL.
-  out->write( Name = 'Customer found' data = ls_customer_address2 ).
-  out->write( cl_abap_char_utilities=>newline ).
-ELSE.
-  out->write( 'Customer with that ID not found' ).
-ENDIF.
+    DATA: gt_employee            TYPE STANDARD TABLE OF REF TO zif_lab_04_employee_fjcm,
+          go_employee_count      TYPE REF TO zif_lab_04_employee_fjcm, "No se puede instanciar una interfaz
+          go_internal_employee   TYPE REF TO zcl_lab_32_int_empl_fjcm,
+          go_expatriate_employee TYPE REF TO zcl_lab_33_expatriate_fjcm.
 
+    go_internal_employee = NEW #(  ).
+    APPEND go_internal_employee TO gt_employee.
+    go_expatriate_employee = NEW #(  ).
+    APPEND go_expatriate_employee TO gt_employee.
 
-DATA ls_flight_id2 type /dmo/airport.
+    LOOP AT gt_employee INTO go_employee_count.
+      out->write( go_employee_count->get_employee_count(  ) ).
+    ENDLOOP.
 
-lo_aliases_test->get_airports(
-  EXPORTING
-    iv_airport_id  = 'MAD'
-  RECEIVING
-    rt_airports_id = ls_flight_id2
-).
-
-IF ls_flight_id2 IS NOT INITIAL.
-  out->write( name = 'Flight ID' data = ls_flight_id2  ).
-  out->write( cl_abap_char_utilities=>newline ).
-ELSE.
-  out->write( 'Flight ID not found' ).
-ENDIF.
-
-*************Ejercicio 6**************
-
-DATA(lo_logistics) = NEW zcl_lab_28_logistics_fjcm( ).
-
-out->write( lo_logistics->input_products( ) ).
-out->write( cl_abap_char_utilities=>newline ).
-out->write( lo_logistics->merchandise_output( ) ).
-out->write( cl_abap_char_utilities=>newline ).
-out->write( lo_logistics->production_line( ) ).
+**************Ejercicio 3**************
 
 
 
@@ -289,5 +326,11 @@ out->write( lo_logistics->production_line( ) ).
 
 
 
-  ENDMETHOD.
+
+
+
+
+
+
+ENDMETHOD.
 ENDCLASS.

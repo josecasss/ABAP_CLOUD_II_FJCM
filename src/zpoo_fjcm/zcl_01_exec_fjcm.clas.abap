@@ -16,10 +16,116 @@ CLASS zcl_01_exec_fjcm IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.
 
- DATA(lo_bussines_partner) = NEW zcl_17_bp_fjcm( ).
+       data go_object type ref to object. "Todas las clases heredan de la clase object, por eso se puede declarar un objeto de tipo object
 
- lo_bussines_partner->set_company_type( ). "Llamando con aliases
- lo_bussines_partner->set_group( ).
+       go_object = NEW zcl_34_product_fjcm( ).
+
+       data(lv_method_name) = 'RETURN_CATEGORY'.
+       data lv_category type string.
+
+       call method go_object->(lv_method_name) receiving rv_category = lv_category.
+
+       out->write( |Category: { lv_category }| ).
+
+
+
+
+****Crear instancias de tipos distintos****
+*    DATA go_contract TYPE REF TO zif_09_contract_fjcm.
+*    go_contract = NEW zcl_32_constr_contract_fjcm( ).
+*    create object go_contract type zcl_32_constr_contract_fjcm.
+*
+*
+*    DATA go_constr_contract TYPE REF TO zcl_32_constr_contract_fjcm.
+*    go_constr_contract = NEW zcl_33_record_contract_fjcm( ) . "Se puede instanciar asi tambien por ser clase hija
+*    create object go_constr_contract type zcl_33_record_contract_fjcm.
+*
+*    go_contract = NEW zcl_33_record_contract_fjcm( ).
+*    create object go_contract type zcl_33_record_contract_fjcm.
+
+*****Múltiples referencias apuntando al mismo objeto***
+*
+*    DATA: lo_vat_indicator_1 TYPE REF TO zcl_31_vat_indicator_fjcm,
+*          lo_vat_indicator_2 TYPE REF TO zcl_31_vat_indicator_fjcm,
+*          lo_vat_indicator_3 TYPE REF TO zcl_31_vat_indicator_fjcm.
+*
+**    CREATE OBJECT: lo_vat_indicator_1,
+**                   lo_vat_indicator_2,
+**                   lo_vat_indicator_3.
+*
+*    lo_vat_indicator_1 =  NEW #( ).
+*    lo_vat_indicator_2 =  NEW #( ).
+*    lo_vat_indicator_3 =  NEW #( ).
+*
+*    lo_vat_indicator_2  = lo_vat_indicator_1. "La referencia lo_vat_indicator_2 apunta al mismo objeto que lo_vat_indicator_1
+*    lo_vat_indicator_3  = lo_vat_indicator_1. "La referencia lo_vat_indicator_3 apunta al mismo objeto que lo_vat_indicator_1
+*
+*    lo_vat_indicator_1->vat_indicator = 'A1'.
+*    lo_vat_indicator_2->vat_indicator = 'A2'.
+*    lo_vat_indicator_3->vat_indicator = 'A3'.
+*
+*    out->write( |VAT Indicator 1: { lo_vat_indicator_1->vat_indicator }| ).
+*    out->write( |VAT Indicator 2: { lo_vat_indicator_2->vat_indicator }| ).
+*    out->write( |VAT Indicator 3: { lo_vat_indicator_3->vat_indicator }| ).
+
+***** Composición ****
+*
+*DATA(lo_keyboard) = NEW zcl_29_keyboard_fjcm( ). "Instancia de teclado
+*
+*DATA(lo_laptop) = NEW zcl_30_laptop_fjcm( io_keyboard = lo_keyboard ). "Composición, La laptop necesita un teclado
+*
+*lo_keyboard->keyboard_type = 'ES'.
+*
+*out->write( | Keyboard type: { lo_laptop->keyboard->keyboard_type }| ). "Acceso al teclado de la laptop a través de la composición
+
+**ASOCIACION DE CLASES
+*DATA(lo_credit_card) = NEW zcl_27_credit_card_fjcm( ).
+*DATA(lo_client) = NEW zcl_28_client_fjcm( ).
+*
+*lo_credit_card->set_card_num( iv_card_num = '1234-5678-9012-3456' ).
+*lo_client->set_credit_card( ir_credit_card = lo_credit_card  ). "Asignar la tarjeta de crédito al cliente *ASOCIACION
+*out->write( lo_client->get_credit_card( )->get_card_num( ) ). "Concatenacion de metodos para obtener el número de la tarjeta de crédito del cliente.
+
+*****Poliformismo con interfaces****
+
+*    DATA: gt_co_companies TYPE STANDARD TABLE OF REF TO zif_08_co_company_fjcm, " Tabla interna de referencia a la interfaz "Se puede"
+*          go_co_company   TYPE REF TO zif_08_co_company_fjcm, " Referencia a la interfaz "Interaz no se puede instanciar, solo se puede referenciar"
+*          go_eu_company   TYPE REF TO zcl_24_company_eu_fjcm,
+*          go_usa_company  TYPE REF TO zcl_25_company_usa_fjcm.
+*    DATA(go_plant) = NEW zcl_26_plant_fjcm( ).
+*
+**OTRA FORMA DE LLENAR LA TABLA INTERNA PERO SIN DECLARAR OBJETOS
+**    APPEND NEW zcl_24_company_eu_fjcm( ) TO gt_co_companies.
+**   APPEND NEW zcl_25_company_usa_fjcm( ) TO gt_co_companies.
+*** APPEND NEW zcl_24_company_eu_fjcm( ) TO gt_co_companies REFERENCE INTO DATA(go_temp).
+*** DATA(go_eu_company) = CAST zcl_24_company_eu_fjcm( go_temp ).
+*
+*    go_eu_company = NEW #( ).
+*    APPEND go_eu_company TO gt_co_companies.
+*    go_usa_company = NEW #( ).
+*    APPEND go_usa_company TO gt_co_companies.
+*
+*    LOOP AT gt_co_companies INTO go_co_company.
+*      out->write( go_co_company->define_company( ) ).
+*      out->write( go_plant->assign_company( go_co_company ) ).
+*    ENDLOOP.
+
+****Poliformismo
+
+*    DATA gt_airplanes TYPE STANDARD TABLE OF REF TO zcl_21_airplane_fjcm. " Tabla interna de referencia a la clase padre
+*
+*    " Llenar la tabla directamente
+*    APPEND NEW zcl_22_cargo_plane_fjcm( ) TO gt_airplanes.                " Instancia de la clase hija
+*    APPEND NEW zcl_23_passenger_plane_fjcm( ) TO gt_airplanes.            " Instancia de la clase hija
+*
+*    LOOP AT gt_airplanes INTO DATA(lo_airplane).
+*      out->write( lo_airplane->airplane_type( ) ).
+*    ENDLOOP.
+
+* DATA(lo_bussines_partner) = NEW zcl_17_bp_fjcm( ).
+*
+* lo_bussines_partner->set_company_type( ). "Llamando con aliases
+* lo_bussines_partner->set_group( ).
 
 
 *  DATA(lo_department) = NEW zcl_lab_16_department_fjcm( ).
@@ -186,5 +292,5 @@ CLASS zcl_01_exec_fjcm IMPLEMENTATION.
 *
 *    out->write( zcl_02_contract_fjcm=>company ). "Atributo estatico, afecta a todas las instancias 'TIENE READ ONLY'
 
-    endmethod.
+  ENDMETHOD.
 ENDCLASS.
