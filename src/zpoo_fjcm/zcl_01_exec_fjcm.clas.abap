@@ -1,35 +1,130 @@
-CLASS zcl_01_exec_fjcm DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class zcl_01_exec_fjcm definition
+  public
+  final
+  create public .
 
-  PUBLIC SECTION.
+  public section.
 
-    INTERFACES if_oo_adt_classrun .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
-ENDCLASS.
-
-
-CLASS zcl_01_exec_fjcm IMPLEMENTATION.
+    interfaces if_oo_adt_classrun .
+  protected section.
+  private section.
+endclass.
 
 
-  METHOD if_oo_adt_classrun~main.
+class zcl_01_exec_fjcm implementation.
 
-       data go_object type ref to object. "Todas las clases heredan de la clase object, por eso se puede declarar un objeto de tipo object
 
-       go_object = NEW zcl_34_product_fjcm( ).
+  method if_oo_adt_classrun~main.
 
-       data(lv_method_name) = 'RETURN_CATEGORY'.
-       data lv_category type string.
+*******Class-relevant Local Types
 
-       call method go_object->(lv_method_name) receiving rv_category = lv_category.
+  data(go_components) = new zcl_43_components_fjcm( ).
 
-       out->write( |Category: { lv_category }| ).
+  go_components->get_first( importing ev_first = data(gv_first) ). "Solo se puede acceder a los atributos de la clase con el objeto de la clase, no con la clase atributos
 
 
 
 
+
+
+
+
+
+******Manejar eventos para todas las instancias de la clase
+*
+*    data(go_north_building) = new zcl_41_building_fjcm( ).
+*    data(go_south_building) = new zcl_41_building_fjcm( ).
+*    data(go_east_building) = new zcl_41_building_fjcm( ).
+*    data(go_west_building) = new zcl_41_building_fjcm( ).
+*
+*    data(go_access) = new zcl_42_access_fjcm( ).
+
+*    set handler go_access->on_blocked_entrance for go_north_building.
+*    set handler go_access->on_blocked_entrance for go_south_building.
+*    set handler go_access->on_blocked_entrance for go_east_building.
+*    set handler go_access->on_blocked_entrance for go_west_building.
+
+*    set handler go_access->on_blocked_entrance for all instances. " Para cubrir todas las instancias de la clase zcl_41_building_fjcm
+*
+*    "Otra forma de asignar el evento a todas las instancias de la clase seria poner el handler en la clase receptora en un constructor *************
+*    go_north_building->entry = 'North Entrance'.
+*    go_north_building->close_entry( ).
+*
+*    go_south_building->entry = 'South Entrance'.
+*    go_south_building->close_entry( ).
+*
+*    go_east_building->entry = 'East Entrance'.
+*    go_east_building->close_entry( ).
+*
+*    go_west_building->entry = 'West Entrance'.
+*    go_west_building->close_entry( ).
+*
+*    out->write( zcl_42_access_fjcm=>table_blocked_entries ).
+
+******Eventos estáticos
+*
+*    set handler zcl_40_smtp_fjcm=>on_new_mail.
+*
+*    do 3 times.
+*      wait up to 1 seconds.
+*      zcl_39_mail_fjcm=>compose_mail( ).
+*    enddo.
+*
+*      out->write( name = 'Inbox'  data = zcl_40_smtp_fjcm=>table_inbox ).
+
+****Definir eventos en las interfaces
+
+    data(go_american_bank) = new zcl_37_american_bank_fjcm( ).
+    data(go_bank_client) = new zcl_38_bank_client_fjcm( ).
+*
+*    set handler go_bank_client->on_new_transfer for go_american_bank. "Set Handler-Clase Receptora del evento- for Clase Emisora del evento
+*
+*    do 5 times.
+*      wait up to 1 seconds.
+*
+*      out->write( go_american_bank->create_notification( ) ).
+*      out->write( go_bank_client->notification ).
+*
+*      if sy-index = 3.
+*         set handler go_bank_client->on_new_transfer for go_american_bank activation abap_false. " *Desactivar el evento* en la tercera iteración por el index
+*         go_bank_client->notification = |No handler for event new transfer { sy-index }|.
+*      endif.
+*    enddo.
+
+******Definición y levantamiento de eventos
+*
+*    DATA(go_timer) = NEW zcl_35_timer_fjcm(  ).
+*    DATA(go_connection) = NEW zcl_36_connection_fjcm( ).
+*
+*    SET HANDLER go_connection->on_time_out FOR go_timer. "Set Handler-Clase Receptora del evento- for Clase Emisora del evento
+*
+*    DO.
+*
+*      WAIT UP TO 1 SECONDS.
+*      go_timer->increment_counter( 1 ).
+*      go_timer->check_limit( ).
+*
+*      IF go_connection->hour IS INITIAL. " Si la hora es inicial, significa que el evento no se ha levantado
+*          out->write( |Waiting for event  be raised { cl_abap_context_info=>get_system_time(  ) }| ).
+*      ELSE.
+*        out->write( |Event was raised at: { go_connection->hour } - { go_connection->sender_user }| ).
+*        EXIT.
+*      ENDIF.
+*    ENDDO.
+
+****Asignar instancias utilizando la clase genérica OBJECT***
+*
+*    DATA go_object TYPE REF TO object. "Todas las clases heredan de la clase object, por eso se puede declarar un objeto de tipo object
+*
+*    go_object = NEW zcl_34_product_fjcm( ).
+*
+*    DATA(lv_method_name) = 'RETURN_CATEGORY'.
+*    DATA lv_category TYPE string.
+*
+*    CALL METHOD go_object->(lv_method_name) RECEIVING rv_category = lv_category.
+*
+*    out->write( |Category: { lv_category }| ).
+*
 ****Crear instancias de tipos distintos****
 *    DATA go_contract TYPE REF TO zif_09_contract_fjcm.
 *    go_contract = NEW zcl_32_constr_contract_fjcm( ).
@@ -292,5 +387,5 @@ CLASS zcl_01_exec_fjcm IMPLEMENTATION.
 *
 *    out->write( zcl_02_contract_fjcm=>company ). "Atributo estatico, afecta a todas las instancias 'TIENE READ ONLY'
 
-  ENDMETHOD.
-ENDCLASS.
+  endmethod.
+endclass.

@@ -1,21 +1,21 @@
-CLASS zcl_lab_00_ejec_fjcm DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class zcl_lab_00_ejec_fjcm definition
+  public
+  final
+  create public .
 
-  PUBLIC SECTION.
+  public section.
 
-    INTERFACES if_oo_adt_classrun .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
-ENDCLASS.
-
-
-
-CLASS zcl_lab_00_ejec_fjcm IMPLEMENTATION.
+    interfaces if_oo_adt_classrun .
+  protected section.
+  private section.
+endclass.
 
 
-  METHOD if_oo_adt_classrun~main.
+
+class zcl_lab_00_ejec_fjcm implementation.
+
+
+  method if_oo_adt_classrun~main.
 
 *    DATA(lo_person) = NEW zcl_lab_01_person( ).
 *
@@ -294,22 +294,117 @@ CLASS zcl_lab_00_ejec_fjcm IMPLEMENTATION.
 
 **************Ejercicio 2**************
 
-    DATA: gt_employee            TYPE STANDARD TABLE OF REF TO zif_lab_04_employee_fjcm,
-          go_employee_count      TYPE REF TO zif_lab_04_employee_fjcm, "No se puede instanciar una interfaz
-          go_internal_employee   TYPE REF TO zcl_lab_32_int_empl_fjcm,
-          go_expatriate_employee TYPE REF TO zcl_lab_33_expatriate_fjcm.
-
-    go_internal_employee = NEW #(  ).
-    APPEND go_internal_employee TO gt_employee.
-    go_expatriate_employee = NEW #(  ).
-    APPEND go_expatriate_employee TO gt_employee.
-
-    LOOP AT gt_employee INTO go_employee_count.
-      out->write( go_employee_count->get_employee_count(  ) ).
-    ENDLOOP.
+*    DATA: gt_employee            TYPE STANDARD TABLE OF REF TO zif_lab_04_employee_fjcm,
+*          go_employee_count      TYPE REF TO zif_lab_04_employee_fjcm, "No se puede instanciar una interfaz
+*          go_internal_employee   TYPE REF TO zcl_lab_32_int_empl_fjcm,
+*          go_expatriate_employee TYPE REF TO zcl_lab_33_expatriate_fjcm.
+*
+*    go_internal_employee = NEW #(  ).
+*    APPEND go_internal_employee TO gt_employee.
+*    go_expatriate_employee = NEW #(  ).
+*    APPEND go_expatriate_employee TO gt_employee.
+*
+*    LOOP AT gt_employee INTO go_employee_count.
+*      out->write( go_employee_count->get_employee_count(  ) ).
+*    ENDLOOP.
 
 **************Ejercicio 3**************
 
+*    DATA(lo_student) = NEW zcl_lab_34_student_fjcm( ).
+*    DATA(lo_collage) = NEW zcl_lab_35_college_fjcm( ).
+*
+*    lo_student->set_name( iv_name = 'Freddy José Casas Mejia' ).
+*    lo_collage->enroll_student( iv_student = lo_student ). " Matricular estudiante en el collage
+*    out->write( |Student enrolled: { lo_student->get_name( ) }| ). " Mostrar nombre del estudiante matriculado
+*
+***************Ejercicio 4**************
+*
+*    DATA(lo_screen) = NEW zcl_lab_37_screen_fjcm( ).
+*    lo_screen->set_screen_type( 'Iphone 13' ).
+*
+*    DATA(lo_phone) = NEW zcl_lab_36_phone_fjcm( lo_screen ).
+*    "Puedo instanciar el telefono ya que tengo una pantalla
+*
+***************Ejercicio 5**************
+*
+*    DATA lo_product_price  TYPE REF TO zcl_lab_38_prod_price_fjcm.
+*    DATA lo_product_price2 TYPE REF TO zcl_lab_38_prod_price_fjcm.
+*
+*    lo_product_price = NEW #( ).
+*    lo_product_price2 = NEW #( ).
+*
+*    lo_product_price->price = 200.
+*    lo_product_price2 = lo_product_price.
+*    lo_product_price2->price = 300. " Apunto a la misma referencia de memoria del primer objeto
+*    out->write( |Product price: { lo_product_price2->price }| ).
+*
+****************Ejercicio 6**************
+*
+*    DATA lo_budget TYPE REF TO zcl_lab_39_budget_fjcm.
+*
+*    lo_budget = NEW zcl_lab_40_actual_budget_fjcm( ). "Instancia la clase hija se puuede
+*
+****************Ejercicio 7**************
+
+*    DATA lo_organization TYPE REF TO object.
+*    lo_organization = NEW zcl_lab_41_organization_fjcm( ).
+*
+*    DATA(lv_set) = 'SET_HEADQUATERS'.
+*    DATA(lv_get) = 'GET_HEADQUATERS'.
+*    DATA: lv_headquaters TYPE string VALUE 'FRANCE',
+*          lv_test_organization TYPE string.
+*
+*    CALL METHOD lo_organization->(lv_set) EXPORTING iv_headquaters = lv_headquaters.
+*    CALL METHOD lo_organization->(lv_get) RECEIVING rv_headquaters = lv_test_organization.
+*    out->write( |Organization : { lv_test_organization }| ).
+
+
+*********************LAB 03-2*************
+**************Ejercicio 1**************
+
+*    DATA(go_screen) = NEW zcl_lab_42_screen_fjcm( ).
+*    DATA(go_navigation) = NEW zcl_lab_43_navigation_fjcm( ).
+*
+*    SET HANDLER go_navigation->on_touch_screen FOR go_screen.
+*
+*    go_screen->element_selected( iv_element = 2 ).
+*
+*    IF go_navigation->log IS NOT INITIAL.
+*      out->write( go_navigation->log ).
+*    ELSE.
+*      out->write( 'No elements selected' ).
+*    ENDIF.
+
+************Ejercicio 5************
+
+    data(go_operating_system) = new zcl_lab_44_operating_sys_fjcm( ).
+    data(go_chrome) = new zcl_lab_45_chrome_fjcm( ).
+
+    set handler go_chrome->on_close_window for go_operating_system.
+
+*    do 5 times.
+*      wait up to 1 seconds.
+*      go_operating_system->mouse_movement( ).
+*      out->write( go_chrome->log ).
+*    enddo.
+
+************Ejercicio 6************
+
+    do 5 times.
+      wait up to 1 seconds.
+      go_operating_system->mouse_movement( ).
+      out->write( go_chrome->log ).
+      if sy-index = 3.
+        set handler go_chrome->on_close_window for go_operating_system activation abap_false.
+        go_chrome->log = |No handler for event new transfer { sy-index }|.
+      endif.
+      exit.
+    enddo.
+
+
+*******Completar EVENTOS me rindo por ahora, seguire mas adelante****
+
+*********************LAB 03-3*************
 
 
 
@@ -330,7 +425,5 @@ CLASS zcl_lab_00_ejec_fjcm IMPLEMENTATION.
 
 
 
-
-
-ENDMETHOD.
-ENDCLASS.
+  endmethod.
+endclass.

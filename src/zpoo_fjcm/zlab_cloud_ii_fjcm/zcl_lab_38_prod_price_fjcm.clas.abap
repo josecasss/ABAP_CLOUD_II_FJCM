@@ -1,0 +1,17 @@
+CLASS zcl_lab_38_prod_price_fjcm DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+  DATA: price type i.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_lab_38_prod_price_fjcm IMPLEMENTATION.
+ENDCLASS.
+
+
