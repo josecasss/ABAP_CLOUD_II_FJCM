@@ -1,22 +1,13 @@
-CLASS zcl_lab_22_student_fjcm DEFINITION INHERITING FROM zcl_lab_21_classroom_fjcm
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_22_STUDENT_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-  METHODS: assign_student.
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_22_student_fjcm IMPLEMENTATION.
-
-  METHOD assign_student.
-  DATA(lo_student) = NEW zcl_lab_21_classroom_fjcm( ).
-  ENDMETHOD.
-
+CLASS ZCL_LAB_22_STUDENT_FJCM IMPLEMENTATION.
 ENDCLASS.

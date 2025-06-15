@@ -1,28 +1,13 @@
-CLASS zcl_lab_01_work_record DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_01_WORK_RECORD definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-    CLASS-METHODS: open_new_record IMPORTING iv_date       TYPE zdate
-                                             iv_first_name TYPE string
-                                             iv_last_name  TYPE string
-                                             iv_surname    TYPE string OPTIONAL.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
-    CLASS-DATA: date       TYPE zdate,
-                first_name TYPE string,
-                last_name  TYPE string,
-                surname    TYPE string.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zcl_lab_01_work_record IMPLEMENTATION.
 
-  METHOD open_new_record.
-  date = iv_date.
-  first_name = iv_first_name.
-  last_name = iv_last_name.
-  surname = iv_surname.
-  ENDMETHOD.
 
+CLASS ZCL_LAB_01_WORK_RECORD IMPLEMENTATION.
 ENDCLASS.

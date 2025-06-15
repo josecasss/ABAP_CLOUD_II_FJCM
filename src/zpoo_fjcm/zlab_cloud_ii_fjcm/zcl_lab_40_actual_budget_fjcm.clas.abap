@@ -1,17 +1,13 @@
-CLASS zcl_lab_40_actual_budget_fjcm DEFINITION INHERITING FROM zcl_lab_39_budget_fjcm
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_40_ACTUAL_BUDGET_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-  METHODS: get_budget REDEFINITION.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zcl_lab_40_actual_budget_fjcm IMPLEMENTATION.
 
-  METHOD get_budget.
-  ENDMETHOD.
 
+CLASS ZCL_LAB_40_ACTUAL_BUDGET_FJCM IMPLEMENTATION.
 ENDCLASS.

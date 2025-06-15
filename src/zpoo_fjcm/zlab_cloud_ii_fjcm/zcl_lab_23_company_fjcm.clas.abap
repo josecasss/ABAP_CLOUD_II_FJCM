@@ -1,16 +1,13 @@
-CLASS zcl_lab_23_company_fjcm DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC
-  GLOBAL FRIENDS zcl_lab_24_partner_fjcm.
+class ZCL_LAB_23_COMPANY_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
-  DATA: capital TYPE string VALUE '1000000'.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_23_company_fjcm IMPLEMENTATION.
+CLASS ZCL_LAB_23_COMPANY_FJCM IMPLEMENTATION.
 ENDCLASS.

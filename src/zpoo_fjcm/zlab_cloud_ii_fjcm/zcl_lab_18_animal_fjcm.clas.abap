@@ -1,22 +1,13 @@
-CLASS zcl_lab_18_animal_fjcm DEFINITION
-  PUBLIC
-"  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_18_ANIMAL_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    METHODS: walk RETURNING VALUE(rv_walk) TYPE string.
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_18_animal_fjcm IMPLEMENTATION.
-
-  METHOD walk.
-  rv_walk = 'The animal is walking'.
-  ENDMETHOD.
-
+CLASS ZCL_LAB_18_ANIMAL_FJCM IMPLEMENTATION.
 ENDCLASS.

@@ -1,25 +1,13 @@
-CLASS zcl_lab_43_navigation_fjcm DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_43_NAVIGATION_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-  DATA: log type string.
-  METHODS: on_touch_screen for event touch_screen of zcl_lab_42_screen_fjcm
-                           IMPORTING ev_horizontal
-                                      ev_vertical.
-
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_43_navigation_fjcm IMPLEMENTATION.
-
-  METHOD on_touch_screen.
-  log = |Horizontal: { ev_horizontal }, Vertical: { ev_vertical }|.
-  ENDMETHOD.
-
+CLASS ZCL_LAB_43_NAVIGATION_FJCM IMPLEMENTATION.
 ENDCLASS.

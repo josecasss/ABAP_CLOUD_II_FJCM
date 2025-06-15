@@ -1,6 +1,4 @@
-INTERFACE zif_lab_04_employee_fjcm
-  PUBLIC .
+interface ZIF_LAB_04_EMPLOYEE_FJCM
+  public .
 
-  Methods: get_employee_count returning value(rv_count) type i.
-
-ENDINTERFACE.
+endinterface.

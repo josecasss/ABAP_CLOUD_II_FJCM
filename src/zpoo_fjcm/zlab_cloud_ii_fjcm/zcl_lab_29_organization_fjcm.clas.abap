@@ -1,20 +1,13 @@
-CLASS zcl_lab_29_organization_fjcm DEFINITION
-  PUBLIC
-"  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_29_ORGANIZATION_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-    methods : get_location returning value(rv_location) type string.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_29_organization_fjcm IMPLEMENTATION.
-
-  METHOD get_location.
-
-  ENDMETHOD.
-
+CLASS ZCL_LAB_29_ORGANIZATION_FJCM IMPLEMENTATION.
 ENDCLASS.

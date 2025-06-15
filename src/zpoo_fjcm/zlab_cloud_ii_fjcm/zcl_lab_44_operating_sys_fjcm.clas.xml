@@ -1,16 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
- <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
-  <asx:values>
-   <VSEOCLASS>
-    <CLSNAME>ZCL_LAB_44_OPERATING_SYS_FJCM</CLSNAME>
-    <LANGU>E</LANGU>
-    <DESCRIPT>LAB 03-2  Operating System</DESCRIPT>
-    <STATE>1</STATE>
-    <CLSCCINCL>X</CLSCCINCL>
-    <FIXPT>X</FIXPT>
-    <UNICODE>X</UNICODE>
-   </VSEOCLASS>
-  </asx:values>
- </asx:abap>
+ <asx:abap version="1.0" xmlns:asx="http://www.sap.com/abapxml"/>
 </abapGit>

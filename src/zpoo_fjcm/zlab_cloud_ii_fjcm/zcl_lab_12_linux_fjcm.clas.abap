@@ -1,14 +1,13 @@
-CLASS zcl_lab_12_linux_fjcm DEFINITION INHERITING FROM zcl_lab_11_system_fjcm
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_12_LINUX_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_12_linux_fjcm IMPLEMENTATION.
+CLASS ZCL_LAB_12_LINUX_FJCM IMPLEMENTATION.
 ENDCLASS.

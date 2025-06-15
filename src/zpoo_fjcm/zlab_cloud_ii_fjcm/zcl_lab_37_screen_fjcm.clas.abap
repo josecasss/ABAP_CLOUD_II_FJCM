@@ -1,21 +1,13 @@
-CLASS zcl_lab_37_screen_fjcm DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_37_SCREEN_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-    METHODS: set_screen_type IMPORTING iv_screen_type TYPE string.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
-    DATA: screen_type TYPE string.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_37_screen_fjcm IMPLEMENTATION.
-
-  METHOD set_screen_type.
-  me->screen_type = iv_screen_type.
-  ENDMETHOD.
-
+CLASS ZCL_LAB_37_SCREEN_FJCM IMPLEMENTATION.
 ENDCLASS.

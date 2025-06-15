@@ -1,24 +1,13 @@
-CLASS zcl_lab_15_flight_price_fjcm DEFINITION
-  PUBLIC
-"  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_15_FLIGHT_PRICE_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    DATA: mt_flights TYPE TABLE OF /dmo/flight.
-
-    METHODS: add_price IMPORTING VALUE(iv_add_price) TYPE /dmo/flight.
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_15_flight_price_fjcm IMPLEMENTATION.
-
-  METHOD add_price.
-    APPEND iv_add_price TO me->mt_flights.
-  ENDMETHOD.
-
+CLASS ZCL_LAB_15_FLIGHT_PRICE_FJCM IMPLEMENTATION.
 ENDCLASS.

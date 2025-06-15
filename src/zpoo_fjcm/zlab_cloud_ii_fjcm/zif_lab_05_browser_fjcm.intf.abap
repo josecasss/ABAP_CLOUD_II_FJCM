@@ -1,7 +1,4 @@
-INTERFACE zif_lab_05_browser_fjcm
-  PUBLIC.
+interface ZIF_LAB_05_BROWSER_FJCM
+  public .
 
-  EVENTS close_window.
-  CONSTANTS log TYPE string VALUE 'Mouse movement detected'.
-
-ENDINTERFACE.
+endinterface.

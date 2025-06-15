@@ -1,32 +1,13 @@
-CLASS zcl_lab_10_constructor_fjcm DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_LAB_10_CONSTRUCTOR_FJCM definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    METHODS: constructor IMPORTING VALUE(iv_log) TYPE string OPTIONAL.
-
-    CLASS-METHODS: class_constructor.
-
-    CLASS-DATA log TYPE string.
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_lab_10_constructor_fjcm IMPLEMENTATION.
-
-  METHOD constructor.
-    me->log = | { log } - 'Instance Constructor called' |.
-  ENDMETHOD.
-
-  METHOD class_constructor.
-    log = | { log } - 'Static constructor called' |.
-  ENDMETHOD.
-
+CLASS ZCL_LAB_10_CONSTRUCTOR_FJCM IMPLEMENTATION.
 ENDCLASS.
-
-
